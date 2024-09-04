@@ -48,6 +48,12 @@
         .upload-label:hover {
             background-color: #2980b9;
         }
+        #clipboard-button {
+            background-color: #2ecc71;
+        }
+        #clipboard-button:hover {
+            background-color: #27ae60;
+        }
         #result {
             background-color: #fff;
             border-radius: 8px;
@@ -82,6 +88,7 @@
         <input type="file" id="file-input" accept="image/*">
         <label for="camera-input" class="upload-label">Tirar foto</label>
         <input type="file" id="camera-input" accept="image/*" capture="environment">
+        <button id="clipboard-button" class="upload-label">Enviar Print (Acabou de Tirar)</button>
     </div>
     <div id="loading">Analisando imagem...</div>
     <div id="result"></div>
@@ -164,6 +171,25 @@
         }
       }
 
+      async function handleClipboardImage() {
+        try {
+          const clipboardItems = await navigator.clipboard.read();
+          for (const clipboardItem of clipboardItems) {
+            for (const type of clipboardItem.types) {
+              if (type.startsWith('image/')) {
+                const blob = await clipboardItem.getType(type);
+                handleImageInput(new File([blob], "clipboard-image.png", { type: blob.type }));
+                return;
+              }
+            }
+          }
+          alert('Nenhuma imagem encontrada no clipboard. Por favor, tire um print e tente novamente.');
+        } catch (err) {
+          console.error('Erro ao acessar o clipboard:', err);
+          alert('Não foi possível acessar o clipboard. Verifique se você deu permissão para o site acessar o clipboard.');
+        }
+      }
+
       document.getElementById('file-input').addEventListener('change', (event) => {
         handleImageInput(event.target.files[0]);
       });
@@ -171,6 +197,8 @@
       document.getElementById('camera-input').addEventListener('change', (event) => {
         handleImageInput(event.target.files[0]);
       });
+
+      document.getElementById('clipboard-button').addEventListener('click', handleClipboardImage);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
