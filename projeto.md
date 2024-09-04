@@ -1,5 +1,8 @@
 API KEY GEMINI: AIzaSyBAxF9haxbPv3kZrPdd3ExBcs1WeTdVusk
 
+- Sempre usar o modelo gemini-1.5-pro
+- O código deve ser feito em html, css e javascript puro, sem usar frameworks como react, vue, angular, etc.
+
 Criar um projeto de uma ia para ajudar estudantes a estudar através de questões:
 
 - Envia a foto da questão para a IA, junto com uma descrição em texto da questão: "Insira aqui a resposta da questão ou qualquer outro texto que ajude na interpretação da questão (opcional)" (opcional)
@@ -23,7 +26,7 @@ Criar um projeto de uma ia para ajudar estudantes a estudar através de questõe
         """
 
 
-adapte o prompt sugerido pelo proprio gemin para funcionar com qualquer imagem:
+adapte o prompt sugerido pelo proprio gemin para funcionar com qualquer imagem (o código abaixo é para node, adaptá-lo para html como o modelo já disposto no index.html):
 
 /*
  * Install the Generative AI SDK
