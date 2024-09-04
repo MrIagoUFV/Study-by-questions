@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 20px;
             background-color: #f4f4f4;
@@ -17,6 +17,7 @@
         h1 {
             color: #2c3e50;
             text-align: center;
+            font-size: 24px;
         }
         #upload-container {
             background-color: #fff;
@@ -24,11 +25,14 @@
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        #file-input {
+        #file-input, #camera-input {
             display: none;
         }
-        #upload-label {
+        .upload-label {
             display: inline-block;
             padding: 10px 20px;
             background-color: #3498db;
@@ -36,8 +40,12 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin: 10px 0;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
         }
-        #upload-label:hover {
+        .upload-label:hover {
             background-color: #2980b9;
         }
         #result {
@@ -46,19 +54,34 @@
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             white-space: pre-wrap;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         #loading {
             display: none;
             text-align: center;
             margin-top: 20px;
         }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            .upload-label {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Analisador de Questões de Vestibular</h1>
     <div id="upload-container">
-        <label for="file-input" id="upload-label">Escolher imagem</label>
+        <label for="file-input" class="upload-label">Escolher imagem</label>
         <input type="file" id="file-input" accept="image/*">
+        <label for="camera-input" class="upload-label">Tirar foto</label>
+        <input type="file" id="camera-input" accept="image/*" capture="environment">
     </div>
     <div id="loading">Analisando imagem...</div>
     <div id="result"></div>
@@ -125,8 +148,7 @@
         });
       }
 
-      document.getElementById('file-input').addEventListener('change', async (event) => {
-        const file = event.target.files[0];
+      async function handleImageInput(file) {
         if (file) {
           document.getElementById('loading').style.display = 'block';
           document.getElementById('result').innerHTML = '';
@@ -140,6 +162,14 @@
             document.getElementById('loading').style.display = 'none';
           }
         }
+      }
+
+      document.getElementById('file-input').addEventListener('change', (event) => {
+        handleImageInput(event.target.files[0]);
+      });
+
+      document.getElementById('camera-input').addEventListener('change', (event) => {
+        handleImageInput(event.target.files[0]);
       });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
