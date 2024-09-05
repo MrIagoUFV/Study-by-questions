@@ -42,3 +42,19 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar
 ## Licença
 
 Este projeto é distribuído sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+
+
+---
+
+LINK: [https://mriago.me/Study-by-questions/](https://mriago.me/Study-by-questions/)
+
+
+ÍCONE (Para ser usado na imagem do projeto no portifólio):
+
+![Design sem nome (10)](https://github.com/user-attachments/assets/b4d67ee8-e892-4eaf-a1f9-e7149b6aad8f)
+
+
+PRINT DA APLICAÇÃO (Para ser usado na imagem do da descrição do projeto portifólio):
+
+![image](https://github.com/user-attachments/assets/23d64e5c-c0de-42cf-8dd2-ac161e550285)
+
